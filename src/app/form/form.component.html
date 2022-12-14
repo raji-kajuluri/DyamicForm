@@ -1,0 +1,46 @@
+<div class="container mt-3 bg-light">
+
+    <h3 class="justify-content-center"> Dynamically Add New Input Fields in Angular </h3>
+
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+
+        <div>
+            <label for="name"><b>Product Name:</b></label>
+            <input type="text" id="name" name="name" formControlName="name" class="form-control">
+        </div>
+
+        <div class="container" formArrayName="quantities">
+            <div class="row">
+
+                <h2 class="col-6">Add Multiple Quantity:</h2>
+                <div class="col-6">
+                    <button type="button" (click)="addQuantity()" class="btn btn-primary">Add
+                        More</button>
+                </div>
+
+            </div>
+            <table>
+                <tr *ngFor="let quantity of quantities().controls; let i=index" [formGroupName]="i">
+                    <td>
+                        Quantity :
+                        <input type="text" formControlName="qty" class="form-control">
+                    </td>
+                    <td>
+                        Price:
+                        <input type="text" formControlName="price" class="form-control">
+                    </td>
+                    <td>
+                        <button (click)="removeQuantity(i)" class="btn btn-danger">Remove</button>
+                    </td>
+                </tr>
+            </table>
+
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+
+
+    </form>
+
+    <br />
+    {{this.productForm.value | json}}
+</div>

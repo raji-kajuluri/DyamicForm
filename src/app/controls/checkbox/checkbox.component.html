@@ -1,0 +1,8 @@
+<div [formGroup]="form">
+    <input type="checkbox"
+    [id]="meta.key"
+    [name]="meta.key"
+    [formControlName]="meta.key"
+    class="form-check-inline">
+    <label for="{{meta.key}}">  {{meta.label}}</label>
+</div>
